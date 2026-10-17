@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Management Console Lite</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="login-view" class="login-wrap hidden">
+    <form id="login-form" class="login-card" novalidate>
+      <h1>Management Console</h1>
+      <p class="muted">TC 管理控制台（精简版）——使用 Server Manager 登录账号密码</p>
+      <label>账号
+        <input id="login-username" name="username" autocomplete="username" autofocus>
+      </label>
+      <label>密码
+        <input id="login-password" name="password" type="password" autocomplete="current-password">
+      </label>
+      <button type="submit" id="login-button" class="btn primary wide">登 录</button>
+      <p id="login-error" class="error hidden" role="alert"></p>
+    </form>
+  </div>
+
+  <div id="main-view" class="hidden">
+    <header class="topbar">
+      <span class="brand">Management Console</span>
+      <span id="demo-badge" class="badge hidden" title="演示模式：数据为模拟数据">DEMO</span>
+      <span class="spacer"></span>
+      <span id="current-user" class="user"></span>
+      <button id="logout-button" class="btn ghost">退出登录</button>
+    </header>
+    <nav class="tabs">
+      <button id="tab-status" class="tab active" type="button">服务器状态</button>
+      <button id="tab-processes" class="tab" type="button">进程清理</button>
+    </nav>
+    <main id="status-view">
+      <div id="targets" class="cards"></div>
+    </main>
+    <main id="processes-view" class="hidden">
+      <div class="processes-toolbar">
+        <button id="processes-refresh" class="btn">Refresh</button>
+        <input id="process-search" class="search" type="search" placeholder="搜索：Server / PID / 用户 / Mode / 日志文件…" autocomplete="off">
+        <span class="spacer"></span>
+        <button id="terminate-selected" class="btn danger" disabled>批量清理选中（0）</button>
+        <button id="terminate-all" class="btn danger">全部清理</button>
+      </div>
+      <p class="muted toolbar-hint">列出所有 Server Manager/Pool 的全部进程；日志文件名来自 Oracle PM_PROCESS_LIST。</p>
+      <div id="process-tables"></div>
+    </main>
+  </div>
+
+  <dialog id="confirm-dialog" class="confirm">
+    <h3 id="confirm-title">确认操作</h3>
+    <p id="confirm-text"></p>
+    <div class="confirm-actions">
+      <button id="confirm-cancel" class="btn ghost" type="button">取消</button>
+      <button id="confirm-ok" class="btn danger" type="button">确定</button>
+    </div>
+  </dialog>
+
+  <dialog id="logpath-dialog" class="confirm">
+    <h3>日志文件</h3>
+    <p id="logpath-name" class="mono-block"></p>
+    <p id="logpath-full" class="mono-block"></p>
+    <p id="logpath-error" class="error hidden"></p>
+    <div class="confirm-actions">
+      <button id="logpath-copy" class="btn" type="button">复制路径</button>
+      <button id="logpath-close" class="btn ghost" type="button">关闭</button>
+    </div>
+  </dialog>
+
+  <dialog id="modules-dialog" class="confirm">
+    <h3>Config for modules</h3>
+    <div id="modules-list" class="modules-list"></div>
+    <div class="confirm-actions">
+      <button id="modules-cancel" class="btn ghost" type="button">取消</button>
+      <button id="modules-save" class="btn primary" type="button">保存</button>
+    </div>
+  </dialog>
+
+  <dialog id="manage-dialog" class="manage">
+    <h3 id="manage-title" class="manage-title"></h3>
+    <div class="manage-tabs">
+      <button class="tab manage-tab active" data-tab="logging" type="button">Logging</button>
+      <button class="tab manage-tab" data-tab="levels" type="button">Log Levels</button>
+      <button class="tab manage-tab" data-tab="monitoring" type="button">Monitoring</button>
+    </div>
+    <div id="manage-body" class="manage-body"></div>
+    <div class="confirm-actions">
+      <button id="manage-close" class="btn ghost" type="button">关闭</button>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast hidden" role="status"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

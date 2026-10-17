@@ -1,0 +1,17 @@
+{
+  "name": "tc-mgmt-console-lite",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Slim Teamcenter Server Manager web console: pool status, process cleanup with syslog names, logging/log-levels/monitoring management",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/config.test.js test/session.test.js test/process-logs.test.js test/jmx-chain.test.js test/http.test.js test/login-command.test.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "oracledb": "^26.0.0"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "listenHost": "127.0.0.1",
+  "listenPort": 8095,
+  "publicBaseUrl": "http://127.0.0.1:8095",
+  "sessionMinutes": 15,
+  "mode": "command",
+  "adapter": {
+    "command": "adapters\\tc-mgr-adapter.cmd",
+    "args": [],
+    "timeoutMs": 30000,
+    "statusCacheMs": 3000
+  },
+  "processLog": {
+    "mode": "oracle",
+    "oracle": {
+      "user": "infodba",
+      "passwordEnv": "TC_DB_PASSWORD",
+      "connectString": "db.example.com:1521/orcl"
+    },
+    "pathPrefixes": {
+      "PoolA": "D:\\Teamcenter\\logs\\ServerManagers\\PoolA\\TcServer\\process"
+    }
+  },
+  "audit": {
+    "enabled": true,
+    "logPath": "logs\\audit-{date}.jsonl",
+    "summaryPath": "logs\\audit-summary-{date}.log",
+    "reverseDns": true,
+    "trustedProxies": []
+  },
+  "tls": {
+    "enabled": false,
+    "keyPath": "",
+    "certPath": "",
+    "caPath": ""
+  },
+  "targets": [
+    {
+      "key": "poola",
+      "name": "PoolA(servermgr01:8088)",
+      "managerId": "PoolA",
+      "jmxUrl": "service:jmx:rmi:///jndi/rmi://servermgr01.example.com:8088/jmxrmi"
+    },
+    {
+      "key": "poolb",
+      "name": "PoolB(第二个 Server Manager 示例)",
+      "managerId": "请填写 Server Manager ID",
+      "jmxUrl": "service:jmx:rmi:///jndi/rmi://servermgr02.example.com:8088/jmxrmi"
+    }
+  ]
+}

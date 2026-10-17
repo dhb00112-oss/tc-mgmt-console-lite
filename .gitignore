@@ -1,0 +1,24 @@
+# 依赖
+node_modules/
+
+# 现场配置（含主机名/端口等环境信息；以 config.example.json 为模板）
+config.json
+
+# 运行产物
+logs/
+*.log
+*.pid
+
+# JVM 崩溃转储
+hs_err_pid*
+replay_pid*
+
+# 适配器构建临时目录（jar 已内置，需要时执行 adapters/build.cmd 重建）
+adapters/build/
+
+# 离线包内的暂存应用副本与 Node 运行时（体积大，按 offline-bundle/README-OFFLINE.md 自行组装）
+offline-bundle/app/
+offline-bundle/packages/
+
+# 发布产物（如需分发请挂到 GitHub Releases）
+dist/
