@@ -11,9 +11,10 @@
 
 原版 Teamcenter Management Console 功能庞杂（Config、Log Levels、Manager Monitoring、Tc Server 等多个菜单），而一线管理员日常高频操作只有三类：
 
-1. 看每个 Server Manager / Pool 里有多少 tcserver 进程、各是什么状态；
-2. 一键 **Restart Warm Servers**；
-3. 找到指定的 tcserver 进程并**清理（Shutdown）**，必要时查看它的 syslog 与日志配置。
+1. 看每个 Server Manager / Pool 里有多少 tcserver 进程、各是什么状态（最不重要的功能）；
+2. 一键 **Restart Warm Servers**（精简后，只保留了重启warm进程的菜单，降低操作者的操作风险）；
+3. 找到指定的 tcserver 进程并**清理（Shutdown）**。
+4. 在TC运维的工程中经常遇到需要查看syslog日志名字时，不知道文件名是什么，管理控制台虽然可以直接查看日志，但是当日志超过一定数量后，就无法直接查看，这个控制台可以通过并行查询TC数据库的方式查询到进程的真实日志文件名，方便查看
 
 本项目把这三件事做到一个单页 Web 界面里，去掉了所有不需要的菜单；并额外补齐了原控制台不好用的地方：跨多个 Server Manager 的**统一进程列表、实时搜索、批量清理、完整中文审计**。
 
